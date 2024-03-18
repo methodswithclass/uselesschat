@@ -28,18 +28,20 @@ const initial = [
 
 const followups = [
   [
-    'Busy doing the last thing you asked, let me add this to the list. Be with you shortly.',
-  ][('Actually...', "I'm not feeling it.")],
+    'Busy doing the last thing you asked, let me add this to the list.',
+    'Be with you shortly.',
+  ],
+  ['Actually...', 'Nope, not feeling it.'],
   ['You know what?', 'Not interested.'],
   ['But really...', "Won't be doing that."],
   ['Yeah, I mean...', 'Nope.'],
-  ['Sure! Let me do that, one sec.', 'Just kidding, not gonna happen!'][
-    "I said I won't be doing that, thanks."
-  ],
+  ['Sure! Let me do that, one sec.', 'Just kidding, not gonna happen!'],
+  ["I said I won't be doing that, thanks."],
   ["I'm serious this time.", 'Nope.'],
   ['What did I say last time?', 'No way.'],
   ["I said it before and I'll say it again", 'Not gonna happen.'],
   ["I'll think about it."],
+  ['No means no.'],
   ['Maybe. Check back later.'],
   ['Please be patient, still thinking...', "I'll let you know when I'm ready."],
 ];
