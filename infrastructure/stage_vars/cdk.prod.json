@@ -1,0 +1,11 @@
+{
+  "app": "npx ts-node --prefer-ts-exts bin/service.ts",
+  "requireApproval": "never",
+  "context": {
+    "env": "prod",
+    "appName": "chat-infra",
+    "subdomain": "www",
+    "domain": "uselesschat.com",
+    "certArn": "arn:aws:acm:us-east-1:654627066109:certificate/ebc9f5e0-37c1-4a7f-953a-549c9c99c668"
+  }
+}
