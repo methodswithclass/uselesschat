@@ -31,7 +31,7 @@ const followups = [
     'Busy doing the last thing you asked, let me add this to the list.',
     'Be with you shortly.',
   ],
-  ['Actually...', "I'm not feeling it."],
+  ['Actually...', 'Nope, not feeling it.'],
   ['You know what?', 'Not interested.'],
   ['But really...', "Won't be doing that."],
   ['Yeah, I mean...', 'Nope.'],
