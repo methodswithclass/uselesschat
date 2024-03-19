@@ -130,6 +130,34 @@ html,body {
     cursor: pointer;
 }
 
+.input-ios {
+    position: absolute;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.text-input-ios {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 30px;
+    width: 90%;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.send-button-ios {
+    position: absolute;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    margin-top: 7px;
+    cursor: pointer;
+}
+
 .send-icon {
     width: auto;
     height: 80%;

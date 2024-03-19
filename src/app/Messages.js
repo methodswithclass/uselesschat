@@ -155,14 +155,14 @@ const Messages = () => {
               ))}
             </div>
             <div className="input-container-ios">
-              <div className="input" onKeyDown={handleKey}>
+              <div className="input-ios" onKeyDown={handleKey}>
                 <input
-                  className="text-input"
+                  className="text-input-ios"
                   value={currentMessage}
                   onChange={handleText}
                 />
                 <div
-                  className={`send-button ${enabled ? '' : 'disabled'}`}
+                  className={`send-button-ios ${enabled ? '' : 'disabled'}`}
                   onClick={handleMessage}
                 >
                   <img className="send-icon" src="./assets/sendIcon.png" />
