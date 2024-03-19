@@ -58,6 +58,7 @@ const Messages = () => {
   const isIOS = checkOS();
 
   const messageRef = useRef(null);
+  const inputRef = useRef(null);
 
   const sendMessage = (items, index) => {
     if (index > items.length - 1) {
@@ -135,6 +136,9 @@ const Messages = () => {
       });
       setCurrentMessage('');
       setDidSend(true);
+      if (isIOS) {
+        inputRef.current.blur();
+      }
     }
   };
 
@@ -160,6 +164,7 @@ const Messages = () => {
                   className="text-input-ios"
                   value={currentMessage}
                   onChange={handleText}
+                  ref={inputRef}
                 />
                 <div
                   className={`send-button-ios ${enabled ? '' : 'disabled'}`}
@@ -184,6 +189,7 @@ const Messages = () => {
                 className="text-input"
                 value={currentMessage}
                 onChange={handleText}
+                ref={inputRef}
               />
               <div
                 className={`send-button ${enabled ? '' : 'disabled'}`}
