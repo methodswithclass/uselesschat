@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { v4 as uuid } from 'uuid';
-import { isNilOrEmpty } from '../utils/util';
+import { isNilOrEmpty, checkOS } from '../utils/util';
 import Message from './Message';
 
 const first = [
@@ -55,7 +55,10 @@ const Messages = () => {
   const [didSend, setDidSend] = useState(false);
   const [enabled, setEnabled] = useState(false);
 
+  const isIOS = checkOS();
+
   const messageRef = useRef(null);
+  const inputRef = useRef(null);
 
   const sendMessage = (items, index) => {
     if (index > items.length - 1) {
@@ -78,7 +81,7 @@ const Messages = () => {
   };
 
   useEffect(() => {
-    if (messageRef) {
+    if (messageRef && !isIOS) {
       window.visualViewport.addEventListener('resize', () => {
         messageRef.current.scroll({
           top: messageRef.current.scrollHeight,
@@ -90,7 +93,9 @@ const Messages = () => {
 
   useEffect(() => {
     if (messages.length > 0 && messages.length > currentLength) {
-      messageRef.current.scroll({
+      const scrollElem = isIOS ? window : messageRef.current;
+
+      scrollElem.scroll({
         top: messageRef.current.scrollHeight,
         behavior: 'smooth',
       });
@@ -131,6 +136,9 @@ const Messages = () => {
       });
       setCurrentMessage('');
       setDidSend(true);
+      if (isIOS) {
+        inputRef.current.blur();
+      }
     }
   };
 
@@ -141,26 +149,59 @@ const Messages = () => {
   };
 
   return (
-    <div className="main">
-      <div className="messages" ref={messageRef}>
-        {messages.map((message) => (
-          <Message key={message.key} message={message} />
-        ))}
-      </div>
-      <div className="input" onKeyDown={handleKey}>
-        <input
-          className="text-input"
-          value={currentMessage}
-          onChange={handleText}
-        />
-        <div
-          className={`send-button ${enabled ? '' : 'disabled'}`}
-          onClick={handleMessage}
-        >
-          <img className="send-icon" src="./assets/sendIcon.png" />
-        </div>
-      </div>
-    </div>
+    <>
+      {isIOS ? (
+        <>
+          <div className="main-ios" ref={messageRef}>
+            <div className="messages-ios">
+              {messages.map((message) => (
+                <Message key={message.key} message={message} />
+              ))}
+            </div>
+            <div className="input-container-ios">
+              <div className="input-ios" onKeyDown={handleKey}>
+                <input
+                  className="text-input-ios"
+                  value={currentMessage}
+                  onChange={handleText}
+                  ref={inputRef}
+                />
+                <div
+                  className={`send-button-ios ${enabled ? '' : 'disabled'}`}
+                  onClick={handleMessage}
+                >
+                  <img className="send-icon" src="./assets/sendIcon.png" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="main">
+            <div className="messages" ref={messageRef}>
+              {messages.map((message) => (
+                <Message key={message.key} message={message} />
+              ))}
+            </div>
+            <div className="input" onKeyDown={handleKey}>
+              <input
+                className="text-input"
+                value={currentMessage}
+                onChange={handleText}
+                ref={inputRef}
+              />
+              <div
+                className={`send-button ${enabled ? '' : 'disabled'}`}
+                onClick={handleMessage}
+              >
+                <img className="send-icon" src="./assets/sendIcon.png" />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 
